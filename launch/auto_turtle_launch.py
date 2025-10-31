@@ -10,16 +10,13 @@ def generate_launch_description():
             name='scanner',
             output='screen',   # <<< important
             emulate_tty=True,  # <<< important for live flushing
-            arguments=['--ros-args', '--log-level', 'INFO']
+            arguments=['--ros-args', '--log-level', 'INFO'],
         ),
         Node(
             package='auto_turtle',
             namespace='locomotion',
             executable='locomotion',
             name='locomotion',
-            output='screen',   # <<< important
-            emulate_tty=True,  # <<< important for live flushing
-            arguments=['--ros-args', '--log-level', 'INFO']
         ),
         Node(
             package='auto_turtle',

@@ -17,7 +17,7 @@ class Locomotion(Node):
             self.listener_callback,
             10)
         qos = QoSProfile(depth=10)
-        self.pub = self.create_publisher(Twist, 'cmd_vel', 1)
+        self.pub = self.create_publisher(Twist, '/cmd_vel', 1)
         self.subscription  # prevent unused variable warning
 
     def create_twist_msg(self, x, z):
