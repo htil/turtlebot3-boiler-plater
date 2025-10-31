@@ -17,7 +17,7 @@ class Locomotion(Node):
             self.listener_callback,
             10)
         qos = QoSProfile(depth=10)
-        self.pub = self.create_publisher(Twist, 'cmd_vel', qos)
+        self.pub = self.create_publisher(Twist, 'cmd_vel', 1)
         self.subscription  # prevent unused variable warning
 
     def create_twist_msg(self, x, z):
@@ -31,11 +31,11 @@ class Locomotion(Node):
     
     def listener_callback(self, msg):
         if msg.data == "unblocked":
-           _twist = self.create_twist_msg(0.0, 0.0)
+           _twist = self.create_twist_msg(0.1, 0.0)
            self.pub.publish(_twist)
            self.log_message("Forward")
         else: 
-           _twist = self.create_twist_msg(0.0, 0.0)
+           _twist = self.create_twist_msg(0.0, 0.5)
            self.pub.publish(_twist)
            self.log_message("Turn")
 
@@ -50,6 +50,7 @@ def main(args=None):
     # (optional - otherwise it will be done automatically
     # when the garbage collector destroys the node object)
     minimal_subscriber.destroy_node()
+
     rclpy.shutdown()
 
 
